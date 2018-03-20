@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CognitiveDemo.Views.FaceIdentifyPage"
+             Title="Face Identification"
+             x:Name="FaceIdentifyPage">
+    <ContentPage.Content>
+        <Button x:Name="BtLaunch" Clicked="BtLaunch_OnClicked" 
+                Text="Launch Face Identification" 
+                FontSize="16"
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"
+                WidthRequest="300"
+                HeightRequest="80"
+                
+                ></Button>
+        <!--CornerRadius="20"-->
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:CognitiveDemo.Converters;assembly=CognitiveDemo"
+             x:Class="CognitiveDemo.Views.TrainDetailPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:InverseBooleanConverter x:Key="inverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Clicked="Save_Clicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="10">
+
+            <StackLayout x:Name="ReadOnlyView" Padding="10" IsVisible="{Binding IsCreation, Converter={StaticResource inverter}}">
+                <Label Text="Name:" FontSize="18"/>
+                <Label Text="{Binding Name}" TextColor="Firebrick" VerticalOptions="Start" HorizontalOptions="Start" FontSize="26" />
+                
+            </StackLayout>
+
+            <StackLayout x:Name="EditView" Padding="10" IsVisible="{Binding IsCreation}">
+                <Label Text="Enter a name for this person:" FontSize="18"/>
+                <Entry Text="{Binding Name, Mode=TwoWay}" FontSize="26" TextColor="Firebrick" />
+
+            </StackLayout>
+
+            <StackLayout Padding="10">
+                <Label Text="Photo" FontSize="18" />
+                <Grid Margin="0,10,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="60" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.RowSpan="3">
+                        <Image Source="{Binding CurrentImageSource}"/>
+                        <ActivityIndicator IsRunning="{Binding IsRunning}" HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Grid>
+
+                    <Image Grid.Column="1" Source="camera.png" >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnTapGestureRecognizerCameraTapped"  />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Grid.Column="1" Grid.Row="1" Source="files.png"  />
+                    <Image Grid.Column="1" Grid.Row="2" Source="google.png"  />
+                </Grid>
+            </StackLayout>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
